@@ -17,6 +17,11 @@ class Open
     public $aes_key = "";
 
 
+    /**
+     * 由code获得access_token
+     * @param $code
+     * @return bool|string
+     */
     public function getAccessToken($code)
     {
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?";
