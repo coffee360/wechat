@@ -1,0 +1,20 @@
+{
+  "name": "phpfunction/wechat",
+  "description": "wechat",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Phpfunction\\Wechat\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "phpfunction",
+      "email": "164589895@qq.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "phpfunction/app": "^1.0"
+  }
+}
