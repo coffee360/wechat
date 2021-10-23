@@ -30,4 +30,16 @@ class FuWuHao
         return (new HttpApp())->get($url);
     }
 
+
+    /**
+     * 用户详情
+     */
+    public function getUserinfo($access_token, $openid)
+    {
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?";
+        $url .= "access_token=" . $access_token . "&openid=" . $openid . "&lang=zh_CN";
+
+        return (new HttpApp())->get($url);
+    }
+
 }
