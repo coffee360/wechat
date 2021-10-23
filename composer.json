@@ -15,7 +15,6 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "overtrue/wechat": "~4.0",
     "phpfunction/app": "^1.0"
   }
 }

@@ -11,10 +11,8 @@ use Phpfunction\App\HttpApp;
  */
 class Open
 {
-    public $app_id  = "";
-    public $secret  = "";
-    public $token   = "";
-    public $aes_key = "";
+    public $app_id = "";
+    public $secret = "";
 
 
     /**
