@@ -20,14 +20,17 @@ class FuWuHao
     private $app = null;
 
 
-    public function __construct()
+    public function __construct($app_id, $secret, $token)
     {
-        $config    = [
+        $this->app_id = $app_id;
+        $this->secret = $secret;
+        $this->secret = $token;
+        $config       = [
             'app_id' => $this->app_id,
             'secret' => $this->secret,
             'token'  => $this->token,
         ];
-        $this->app = Factory::officialAccount($config);
+        $this->app    = Factory::officialAccount($config);
     }
 
 
