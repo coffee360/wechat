@@ -2,6 +2,7 @@
 
 namespace Phpfunction\Wechat;
 
+use EasyWeChat\Factory;
 use Phpfunction\App\HttpApp;
 
 /**
@@ -14,6 +15,30 @@ class FuWuHao
 
     public $app_id = "";
     public $secret = "";
+    public $token  = '';
+
+    private $app = null;
+
+
+    public function __construct()
+    {
+        $config    = [
+            'app_id' => $this->app_id,
+            'secret' => $this->secret,
+            'token'  => $this->token,
+        ];
+        $this->app = Factory::officialAccount($config);
+    }
+
+
+    public function messageSend($openid = '', $template_id = '', $data = [])
+    {
+        return $this->app->template_message->send([
+            'touser'      => $openid,
+            'template_id' => $template_id,
+            'data'        => $data,
+        ]);
+    }
 
 
     /**
