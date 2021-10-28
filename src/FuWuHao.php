@@ -24,7 +24,7 @@ class FuWuHao
     {
         $this->app_id = $app_id;
         $this->secret = $secret;
-        $this->secret = $token;
+        $this->token  = $token;
         $config       = [
             'app_id' => $this->app_id,
             'secret' => $this->secret,
