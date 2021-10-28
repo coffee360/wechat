@@ -20,6 +20,22 @@ class FuWuHao
     protected $app = null;
 
 
+    public $openid = '';
+
+
+    public $msg_template_id = "";
+    public $msg_first       = "";
+    public $msg_remark      = "";
+    public $msg_keyword1    = "";
+    public $msg_keyword2    = "";
+    public $msg_keyword3    = "";
+    public $msg_keyword4    = "";
+    public $msg_keyword5    = "";
+    public $msg_keyword6    = "";
+    public $msg_keyword7    = "";
+    public $msg_keyword8    = "";
+
+
     public function __construct($app_id, $secret, $token)
     {
         $this->app_id = $app_id;
