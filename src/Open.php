@@ -2,6 +2,7 @@
 
 namespace Phpfunction\Wechat;
 
+use EasyWeChat\Factory;
 use Phpfunction\App\HttpApp;
 
 /**
@@ -11,8 +12,28 @@ use Phpfunction\App\HttpApp;
  */
 class Open
 {
-    public $app_id = "";
-    public $secret = "";
+    public $app_id  = "";
+    public $secret  = "";
+    public $token   = "";
+    public $aes_key = "";
+
+    private $app = null;
+
+
+    public function __construct($app_id, $secret, $token, $aes_key)
+    {
+        $this->app_id  = $app_id;
+        $this->secret  = $secret;
+        $this->token   = $token;
+        $this->aes_key = $aes_key;
+        $config        = [
+            'app_id'  => $this->app_id,
+            'secret'  => $this->secret,
+            'token'   => $this->token,
+            'aes_key' => $this->aes_key,
+        ];
+        $this->app     = Factory::openPlatform($config);
+    }
 
 
     /**

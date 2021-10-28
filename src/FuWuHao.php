@@ -13,9 +13,9 @@ use Phpfunction\App\HttpApp;
 class FuWuHao
 {
 
-    public $app_id = "";
-    public $secret = "";
-    public $token  = '';
+    private $app_id = "";
+    private $secret = "";
+    private $token  = '';
 
     private $app = null;
 
