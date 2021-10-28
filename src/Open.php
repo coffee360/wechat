@@ -12,12 +12,12 @@ use Phpfunction\App\HttpApp;
  */
 class Open
 {
-    public $app_id  = "";
-    public $secret  = "";
-    public $token   = "";
-    public $aes_key = "";
+    protected $app_id  = "";
+    protected $secret  = "";
+    protected $token   = "";
+    protected $aes_key = "";
 
-    private $app = null;
+    protected $app = null;
 
 
     public function __construct($app_id, $secret, $token, $aes_key)

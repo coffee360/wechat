@@ -13,11 +13,11 @@ use Phpfunction\App\HttpApp;
 class FuWuHao
 {
 
-    private $app_id = "";
-    private $secret = "";
-    private $token  = '';
+    protected $app_id = "";
+    protected $secret = "";
+    protected $token  = '';
 
-    private $app = null;
+    protected $app = null;
 
 
     public function __construct($app_id, $secret, $token)
