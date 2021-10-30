@@ -49,9 +49,21 @@ class FuWuHao
     }
 
 
+    /**
+     * 服务号app
+     */
     public function getApp()
     {
         return $this->app;
+    }
+
+
+    /**
+     * 获得用户详情
+     */
+    public function getUserInfoByOpenid($openid)
+    {
+        return $this->app->user->get($openid);
     }
 
 
