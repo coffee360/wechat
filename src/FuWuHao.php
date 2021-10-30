@@ -49,6 +49,12 @@ class FuWuHao
     }
 
 
+    public function getApp()
+    {
+        return $this->app;
+    }
+
+
     /**
      * 模板消息
      */
