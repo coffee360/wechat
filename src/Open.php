@@ -40,7 +40,6 @@ class Open
     // ###################################################################################
     // ###################################################################################
 
-
     /**
      * 由code获得access_token
      * @param $code
@@ -55,16 +54,5 @@ class Open
         return (new HttpApp())->get($url);
     }
 
-
-    /**
-     * 用户详情
-     */
-    public function getUserinfo($access_token, $openid)
-    {
-        $url = "https://api.weixin.qq.com/sns/userinfo?";
-        $url .= "access_token=" . $access_token . "&openid=" . $openid;
-
-        return (new HttpApp())->get($url);
-    }
 
 }
