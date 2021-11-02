@@ -68,6 +68,17 @@ class FuWuHao
 
 
     /**
+     * 临时二维码
+     */
+    public function getQrcodeTmp($sceneValue, $expireSeconds = 60 * 5)
+    {
+        $qrcode = $this->getApp()->qrcode->temporary($sceneValue, $expireSeconds);
+
+        return $this->getApp()->qrcode->url($qrcode['ticket']);
+    }
+
+
+    /**
      * 模板消息
      */
     public function messageSend($openid = '', $template_id = '', $data = [])
