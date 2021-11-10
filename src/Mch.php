@@ -59,16 +59,12 @@ class Mch
     /**
      * 商品支付，生成商品二维码
      */
-    public function unifyProductQrcode($product_id, $file_name = "")
+    public function unifyProductQrcode($product_id)
     {
         $content = $this->getApp()
             ->scheme($product_id);
 
-        if (empty($file_name)) {
-            return (new QRCode())->render($content);
-        } else {
-            return (new QRCode())->render($content, $file_name);
-        }
+        return (new QRCode())->render($content);
     }
 
 
