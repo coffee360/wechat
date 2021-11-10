@@ -104,7 +104,6 @@ class Mch
                 $code_url = $result['code_url'];
 
                 $res = [
-                    'code'     => 0,
                     'code_url' => $code_url,
                 ];
                 if ($file_name) {
@@ -118,7 +117,7 @@ class Mch
             }
         }
 
-        return $result + ['code' => 1];
+        return $result;
     }
 
 
