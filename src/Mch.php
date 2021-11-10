@@ -79,7 +79,8 @@ class Mch
             'data' => $content
         ];
         if ($file_name) {
-            $res['img'] = (new QRCode())->render($content, $file_name);
+            (new QRCode())->render($content, $file_name);
+            $res['img'] = $file_name;
         } else {
             $res['img'] = (new QRCode())->render($content);
         }
