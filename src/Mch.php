@@ -95,22 +95,30 @@ class Mch
     /**
      * 订单支付，生成二维码
      */
-    public function unifyOrderQrcode($openid, $out_trade_no, $total_fee, $notify_url, $body = '')
+    public function unifyOrderQrcode($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $file_name = '')
     {
         $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE');
 
         if (!empty($result['result_code']) && !empty($result['return_code'])) {
             if ($result['result_code'] == 'SUCCESS' && $result['return_code'] == 'SUCCESS') {
-                $prepay_id           = $result['prepay_id'];
-                $jssdk               = $this->getApp()->jssdk;
-                $config              = $jssdk->sdkConfig($prepay_id);
-                $config['timeStamp'] = $config['timestamp'];//此处需要将小写s变为大写
+                $code_url = $result['code_url'];
 
-                return $config;
+                $res = [
+                    'code'     => 0,
+                    'code_url' => $code_url,
+                ];
+                if ($file_name) {
+                    (new QRCode())->render($code_url, $file_name);
+                    $res['img'] = $file_name;
+                } else {
+                    $res['img'] = (new QRCode())->render($code_url);
+                }
+
+                return $res;
             }
         }
 
-        return $result;
+        return $result + ['code' => 1];
     }
 
 
