@@ -64,7 +64,10 @@ class Mch
         $content = $this->getApp()
             ->scheme($product_id);
 
-        return (new QRCode())->render($content);
+        return [
+            'data' => $content,
+            'img'  => (new QRCode())->render($content)
+        ];
     }
 
 
