@@ -16,6 +16,7 @@
   "minimum-stability": "dev",
   "require": {
     "overtrue/wechat": "~4.0",
-    "phpfunction/app": "^1.0"
+    "phpfunction/app": "^1.0",
+    "chillerlan/php-qrcode": "^3.4"
   }
 }

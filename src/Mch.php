@@ -2,6 +2,7 @@
 
 namespace Phpfunction\Wechat;
 
+use chillerlan\QRCode\QRCode;
 use EasyWeChat\Factory;
 
 /**
@@ -60,8 +61,10 @@ class Mch
      */
     public function unifyProductQrcode($product_id)
     {
-        return $this->getApp()
+        $content = $this->getApp()
             ->scheme($product_id);
+
+        return (new QRCode())->render($content);
     }
 
 
