@@ -108,7 +108,7 @@ class Mch
                 ];
                 if ($file_name) {
                     (new QRCode())->render($code_url, $file_name);
-                    $res['img'] = $file_name;
+                    $res['img'] = substr($file_name, 1);
                 } else {
                     $res['img'] = (new QRCode())->render($code_url);
                 }
