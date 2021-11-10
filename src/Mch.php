@@ -13,11 +13,12 @@ use EasyWeChat\Factory;
 class Mch
 {
 
-    protected $app_id    = "";
-    protected $mch_id    = "";
-    protected $key       = "";
-    protected $cert_path = "";
-    protected $key_path  = "";
+    protected $app_id     = "";
+    protected $mch_id     = "";
+    protected $key        = "";
+    protected $cert_path  = "";
+    protected $key_path   = "";
+    protected $notify_url = "";
 
     protected $app = null;
 
@@ -30,20 +31,22 @@ class Mch
      * @param $cert_path        绝对路径
      * @param $key_path         绝对路径
      */
-    public function __construct($app_id, $mch_id, $key, $cert_path, $key_path)
+    public function __construct($app_id, $mch_id, $key, $cert_path, $key_path, $notify_url)
     {
-        $this->app_id    = $app_id;
-        $this->mch_id    = $mch_id;
-        $this->key       = $key;
-        $this->cert_path = $cert_path;
-        $this->key_path  = $key_path;
+        $this->app_id     = $app_id;
+        $this->mch_id     = $mch_id;
+        $this->key        = $key;
+        $this->cert_path  = $cert_path;
+        $this->key_path   = $key_path;
+        $this->notify_url = $notify_url;
 
         $config = [
-            'app_id'    => $this->app_id,
-            'mch_id'    => $this->mch_id,
-            'key'       => $this->key,
-            'cert_path' => $this->cert_path,
-            'key_path'  => $this->key_path,
+            'app_id'     => $this->app_id,
+            'mch_id'     => $this->mch_id,
+            'key'        => $this->key,
+            'cert_path'  => $this->cert_path,
+            'key_path'   => $this->key_path,
+            'notify_url' => $this->notify_url,
         ];
 
         $this->app = Factory::payment($config);
