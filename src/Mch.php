@@ -59,15 +59,32 @@ class Mch
     /**
      * 商品支付，生成商品二维码
      */
-    public function unifyProductQrcode($product_id)
+    public function unifyProductQrcodeContent($product_id)
     {
         $content = $this->getApp()
             ->scheme($product_id);
 
-        return [
-            'data' => $content,
-            'img'  => (new QRCode())->render($content)
+        return $content;
+    }
+
+
+    /**
+     * 商品支付，生成商品二维码
+     */
+    public function unifyProductQrcodeImg($product_id, $file_name = "")
+    {
+        $content = $this->unifyProductQrcodeContent($product_id);
+
+        $res = [
+            'data' => $content
         ];
+        if ($file_name) {
+            $res['img'] = (new QRCode())->render($content, $file_name);
+        } else {
+            $res['img'] = (new QRCode())->render($content);
+        }
+
+        return $res;
     }
 
 
