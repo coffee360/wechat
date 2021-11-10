@@ -95,9 +95,9 @@ class Mch
     /**
      * 订单支付，生成二维码
      */
-    public function unifyOrderQrcode($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $file_name = '')
+    public function unifyOrderQrcode($openid, $product_id, $out_trade_no, $total_fee, $notify_url, $body = '', $file_name = '')
     {
-        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE');
+        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE', $product_id);
 
         if (!empty($result['result_code']) && !empty($result['return_code'])) {
             if ($result['result_code'] == 'SUCCESS' && $result['return_code'] == 'SUCCESS') {
