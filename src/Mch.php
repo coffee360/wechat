@@ -56,11 +56,33 @@ class Mch
 
 
     /**
+     * 支付生成二维码
+     */
+    public function unifyQrcode($out_trade_no, $total_fee, $notify_url, $openid, $body = '')
+    {
+        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE');
+
+        if (!empty($result['result_code']) && !empty($result['return_code'])) {
+            if ($result['result_code'] == 'SUCCESS' && $result['return_code'] == 'SUCCESS') {
+                $prepay_id           = $result['prepay_id'];
+                $jssdk               = $this->getApp()->jssdk;
+                $config              = $jssdk->sdkConfig($prepay_id);
+                $config['timeStamp'] = $config['timestamp'];//此处需要将小写s变为大写
+
+                return $config;
+            }
+        }
+
+        return $result;
+    }
+
+
+    /**
      * 支付弹输入密码
      */
-    public function unifyAlert($out_trade_no, $total_fee, $notify_url, $openid, $body)
+    public function unifyAlert($openid, $out_trade_no, $total_fee, $notify_url, $body = '')
     {
-        $result = self::unifyOrder($out_trade_no, $total_fee, $notify_url, $openid, $body);
+        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body);
 
         if (!empty($result['result_code']) && !empty($result['return_code'])) {
             if ($result['result_code'] == 'SUCCESS' && $result['return_code'] == 'SUCCESS') {
@@ -80,24 +102,29 @@ class Mch
     /**
      * 支付下单
      */
-    public function unifyOrder($out_trade_no, $total_fee, $notify_url, $openid, $body)
+    public function unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $trade_type = 'JSAPI')
     {
         $arr = [
-            'body'         => $body,
+            'openid'       => $openid,
             'out_trade_no' => $out_trade_no,
             'total_fee'    => $total_fee * 100,
-
-            // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
-            //            'spbill_create_ip' => '123.12.12.123',
 
             // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'notify_url'   => $notify_url,
 
-            // 请对应换成你的支付方式对应的值类型
-            'trade_type'   => 'JSAPI',
+            'body'       => $body,
 
-            'openid' => $openid
+            // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
+            //            'spbill_create_ip' => '123.12.12.123',
+
+            // 请对应换成你的支付方式对应的值类型,JSAPI=弹框,NATIVE=生成二维码
+            'trade_type' => $trade_type,
+
         ];
+
+        if ("NATIVE" == $trade_type) {
+            $arr['product_id'] = $trade_type;
+        }
 
         // 参数
         return $this->app->order->unify($arr);
