@@ -31,7 +31,7 @@ class Mch
      * @param $cert_path        绝对路径
      * @param $key_path         绝对路径
      */
-    public function __construct($app_id, $mch_id, $key, $cert_path, $key_path, $notify_url)
+    public function __construct($app_id, $mch_id, $key, $cert_path, $key_path, $notify_url = '')
     {
         $this->app_id     = $app_id;
         $this->mch_id     = $mch_id;
