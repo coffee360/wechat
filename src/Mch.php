@@ -146,7 +146,7 @@ class Mch
     /**
      * 支付下单
      */
-    public function unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $trade_type = 'JSAPI')
+    public function unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $trade_type = 'JSAPI', $product_id = 0)
     {
         $arr = [
             'openid'       => $openid,
@@ -167,7 +167,7 @@ class Mch
         ];
 
         if ("NATIVE" == $trade_type) {
-            $arr['product_id'] = $trade_type;
+            $arr['product_id'] = $product_id;
         }
 
         // 参数
