@@ -56,9 +56,19 @@ class Mch
 
 
     /**
-     * 支付生成二维码
+     * 商品支付，生成商品二维码
      */
-    public function unifyQrcode($out_trade_no, $total_fee, $notify_url, $openid, $body = '')
+    public function unifyProductQrcode($product_id)
+    {
+        return $this->getApp()
+            ->scheme($product_id);
+    }
+
+
+    /**
+     * 订单支付，生成二维码
+     */
+    public function unifyOrderQrcode($out_trade_no, $total_fee, $notify_url, $openid, $body = '')
     {
         $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE');
 
@@ -78,9 +88,9 @@ class Mch
 
 
     /**
-     * 支付弹输入密码
+     * 订单支付，弹框输入密码
      */
-    public function unifyAlert($openid, $out_trade_no, $total_fee, $notify_url, $body = '')
+    public function unifyOrderAlert($openid, $out_trade_no, $total_fee, $notify_url, $body = '')
     {
         $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body);
 
