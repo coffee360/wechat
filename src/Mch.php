@@ -95,9 +95,9 @@ class Mch
     /**
      * 订单支付，生成二维码
      */
-    public function unifyOrderQrcode($openid, $product_id, $out_trade_no, $total_fee, $notify_url, $body = '', $file_name = '')
+    public function unifyOrderQrcode($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $file_name = '')
     {
-        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE', $product_id);
+        $result = $this->unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body, 'NATIVE');
 
         if (!empty($result['result_code']) && !empty($result['return_code'])) {
             if ($result['result_code'] == 'SUCCESS' && $result['return_code'] == 'SUCCESS') {
@@ -146,7 +146,7 @@ class Mch
     /**
      * 支付下单
      */
-    public function unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $trade_type = 'JSAPI', $product_id = 0)
+    public function unifyOrder($openid, $out_trade_no, $total_fee, $notify_url, $body = '', $trade_type = 'JSAPI')
     {
         $arr = [
             'openid'       => $openid,
@@ -167,7 +167,7 @@ class Mch
         ];
 
         if ("NATIVE" == $trade_type) {
-            $arr['product_id'] = $product_id;
+            $arr['product_id'] = $out_trade_no;
         }
 
         // 参数
