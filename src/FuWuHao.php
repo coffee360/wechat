@@ -66,12 +66,13 @@ class FuWuHao
     /**
      * 模板消息
      */
-    public function messageSend($openid = '', $template_id = '', $data = [])
+    public function messageSend($openid = '', $template_id = '', $data = [], $url = '')
     {
         return $this->app->template_message->send([
             'touser'      => $openid,
             'template_id' => $template_id,
             'data'        => $data,
+            'url'         => $url,
         ]);
     }
 
