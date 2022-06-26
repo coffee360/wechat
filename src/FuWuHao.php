@@ -82,8 +82,8 @@ class FuWuHao
         }
         if (!empty($this->msg_miniprogram_appid) && !empty($this->msg_miniprogram_pagepath)) {
             $msg['miniprogram'] = [
-                'appid'    => $this->msg_miniprogram_appid,
-                'pagepath' => $this->msg_miniprogram_pagepath,
+                'appid' => $this->msg_miniprogram_appid,
+                'path'  => $this->msg_miniprogram_pagepath,
             ];
         }
 
