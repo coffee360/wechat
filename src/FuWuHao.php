@@ -65,15 +65,26 @@ class FuWuHao
 
     /**
      * 模板消息
+     *  'miniprogram' => [
+     * 'appid' => 'xxxxxxx',
+     * 'pagepath' => 'pages/xxx',
+     * ],
      */
-    public function messageSend($openid = '', $template_id = '', $data = [], $url = '')
+    public function messageSend($openid = '', $template_id = '', $data = [], $url = '', $miniprogram = [])
     {
-        return $this->app->template_message->send([
+        $msg = [
             'touser'      => $openid,
             'template_id' => $template_id,
             'data'        => $data,
-            'url'         => $url,
-        ]);
+        ];
+        if (!empty($url)) {
+            $msg['url'] = $url;
+        }
+        if (!empty($miniprogram)) {
+            $msg['miniprogram'] = $miniprogram;
+        }
+
+        return $this->app->template_message->send($msg);
     }
 
     // ###################################################################################
