@@ -70,18 +70,21 @@ class FuWuHao
      * 'pagepath' => 'pages/xxx',
      * ],
      */
-    public function messageSend($openid = '', $template_id = '', $data = [], $url = '', $miniprogram = [])
+    public function messageSend($openid = '', $template_id = '', $data = [])
     {
         $msg = [
             'touser'      => $openid,
             'template_id' => $template_id,
             'data'        => $data,
         ];
-        if (!empty($url)) {
-            $msg['url'] = $url;
+        if (!empty($this->msg_url)) {
+            $msg['url'] = $this->msg_url;
         }
-        if (!empty($miniprogram)) {
-            $msg['miniprogram'] = $miniprogram;
+        if (!empty($this->msg_miniprogram_appid) && !empty($this->msg_miniprogram_pagepath)) {
+            $msg['miniprogram'] = [
+                'appid'    => $this->msg_miniprogram_appid,
+                'pagepath' => $this->msg_miniprogram_pagepath,
+            ];
         }
 
         return $this->app->template_message->send($msg);
@@ -104,6 +107,11 @@ class FuWuHao
     public    $msg_keyword6    = "";
     public    $msg_keyword7    = "";
     public    $msg_keyword8    = "";
+
+    public $msg_url = "";
+
+    public $msg_miniprogram_appid    = "";
+    public $msg_miniprogram_pagepath = "";
 
     public $url = "";
 
