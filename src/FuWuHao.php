@@ -72,6 +72,13 @@ class FuWuHao
      */
     public function messageSend($openid = '', $template_id = '', $data = [])
     {
+        if (empty($openid)) {
+            return;
+        }
+        if (empty($template_id)) {
+            return;
+        }
+
         $msg = [
             'touser'      => $openid,
             'template_id' => $template_id,
@@ -96,18 +103,18 @@ class FuWuHao
 
     public $openid = '';
 
-    public    $msg_template_id = "";
-    public    $msg_first       = "";
-    public    $msg_remark      = "";
-    public    $msg_keyword1    = "";
-    public    $msg_keyword2    = "";
-    public    $msg_keyword3    = "";
-    public    $msg_keyword4    = "";
-    public    $msg_keyword5    = "";
-    public    $msg_keyword6    = "";
-    public    $msg_keyword7    = "";
-    public    $msg_keyword8    = "";
-    public    $msg_keyword9    = "";
+    public $msg_template_id = "";
+    public $msg_first       = "";
+    public $msg_remark      = "";
+    public $msg_keyword1    = "";
+    public $msg_keyword2    = "";
+    public $msg_keyword3    = "";
+    public $msg_keyword4    = "";
+    public $msg_keyword5    = "";
+    public $msg_keyword6    = "";
+    public $msg_keyword7    = "";
+    public $msg_keyword8    = "";
+    public $msg_keyword9    = "";
 
     public $msg_url = "";
 
@@ -116,11 +123,20 @@ class FuWuHao
 
     public $url = "";
 
+
     public function messageSendExt()
     {
         $openid      = $this->openid;
         $template_id = $this->msg_template_id;
-        $data        = [
+
+        if (empty($openid)) {
+            return;
+        }
+        if (empty($template_id)) {
+            return;
+        }
+
+        $data = [
             'first'    => $this->msg_first,
             'keyword1' => $this->msg_keyword1,
             'keyword2' => $this->msg_keyword2,
